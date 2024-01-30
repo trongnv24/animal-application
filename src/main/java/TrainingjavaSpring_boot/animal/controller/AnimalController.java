@@ -18,11 +18,21 @@ public class AnimalController {
     }
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    private AnimalResponse create(@RequestBody AnimalRequest request){
+    public AnimalResponse create(@RequestBody AnimalRequest request){
         log.info(" === Start api create new animal === ");
         log.info(" === Request Body {} :=== ", request);
         AnimalResponse response = service.create(request);
         log.info(" === Finish api create new animal, Animal id {} : === ", response.getId());
         return response;
     }
+    @GetMapping("{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public AnimalResponse getById(@PathVariable ("id") String id){
+        log.info(" === Start api getById animal === ");
+        log.info( " === String id {} : === ", id);
+        AnimalResponse response = service.getById(id);
+        log.info(" === Finish api getById animal, Animal id {Ư : ", response.getId());
+        return response;
+    }
+
 }
