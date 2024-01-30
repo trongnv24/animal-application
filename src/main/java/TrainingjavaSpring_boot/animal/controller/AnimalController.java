@@ -34,5 +34,14 @@ public class AnimalController {
         log.info(" === Finish api getById animal, Animal id {Ư : ", response.getId());
         return response;
     }
+    @PutMapping("{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public AnimalResponse update(@RequestBody AnimalRequest request, @PathVariable ("id")String id){
+        log.info(" === Start api update animal === ");
+        log.info(" === Request Body {} :, String id {}:", request,id);
+        AnimalResponse response = service.update(request, id);
+        log.info(" === Finish api update animal, Animal id {} : ", response.getId());
+        return response;
+    }
 
 }

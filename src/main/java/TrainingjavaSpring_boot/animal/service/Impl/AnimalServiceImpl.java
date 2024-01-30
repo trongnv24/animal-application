@@ -47,4 +47,25 @@ public class AnimalServiceImpl implements AnimalService {
         log.info(" === Finish api getById animal, Animal id {} : ===", response.getId());
         return response;
     }
+
+    @Override
+    public AnimalResponse update(AnimalRequest request, String id) {
+        log.info(" === Start api update animal === ");
+        log.info(" Request Body {} :, String id {} : ", request, id);
+        Optional<AnimalEntity>optionalAnimal=animalRepository.findById(id);
+        if(!optionalAnimal.isPresent()){
+            throw new RuntimeException();
+        }
+        AnimalEntity animalEntity = optionalAnimal.get();
+        animalEntity.setName(request.getName());
+        animalEntity.setSpecies(request.getSpecies());
+        animalEntity.setColor(request.getColor());
+        animalEntity.setAge(request.getAge());
+        animalEntity.setWeight(request.getWeight());
+        animalEntity = animalRepository.save(animalEntity);
+        AnimalResponse response = convertEntityToAnimalResponse(animalEntity);
+        log.info(" === Finish api update animal, Animal id {} : === ", response.getId());
+        return response;
+    }
+
 }

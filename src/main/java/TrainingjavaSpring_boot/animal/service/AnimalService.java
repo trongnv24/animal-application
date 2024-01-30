@@ -8,4 +8,6 @@ public interface AnimalService {
     AnimalResponse create(AnimalRequest request);
 
     AnimalResponse getById(String id);
+
+    AnimalResponse update(AnimalRequest request, String id);
 }
