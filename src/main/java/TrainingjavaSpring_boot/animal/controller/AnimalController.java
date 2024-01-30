@@ -43,5 +43,12 @@ public class AnimalController {
         log.info(" === Finish api update animal, Animal id {} : ", response.getId());
         return response;
     }
-
+    @DeleteMapping("{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteById(@PathVariable ("id")String id){
+        log.info(" Start api deleteById animal === ");
+        log.info(" === String id {} : === ", id);
+        log.info(" === Finish api deleteById animal, Animal id {} : === ");
+        service.deleteById(id);
+    }
 }

@@ -10,4 +10,6 @@ public interface AnimalService {
     AnimalResponse getById(String id);
 
     AnimalResponse update(AnimalRequest request, String id);
+
+    void deleteById(String id);
 }

@@ -68,4 +68,16 @@ public class AnimalServiceImpl implements AnimalService {
         return response;
     }
 
+    @Override
+    public void deleteById(String id) {
+        log.info(" === Start api deleteById animal === ");
+        log.info(" === String id {} : === ", id );
+        Optional<AnimalEntity>optionalAnimal=animalRepository.findById(id);
+        if(!optionalAnimal.isPresent()){
+            throw new RuntimeException();
+        }
+        log.info(" === Finish api deleteById animal, Animal id {} : ");
+        animalRepository.deleteById(id);
+    }
+
 }
